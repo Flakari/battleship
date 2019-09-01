@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../App';
+import Grid from '../Grid';
+import GridItem from '../GridItem';
 import { mount, shallow } from 'enzyme';
 
-const wrapper = mount(<App />);
+const appWrapper = mount(<App />);
+const gridWrapper = mount(<Grid />);
 
 test('renders without crashing', () => {
     const div = document.createElement('div');
@@ -11,5 +14,9 @@ test('renders without crashing', () => {
 });
 
 test('jest-enzyme environment works', () => {
-    expect(wrapper.find('div')).toExist();
+    expect(appWrapper.find('div')).toExist();
+});
+
+test('grid has 100 tiles', () => {
+    expect(gridWrapper.find('#main-grid').children().length).toBe(100);
 });
